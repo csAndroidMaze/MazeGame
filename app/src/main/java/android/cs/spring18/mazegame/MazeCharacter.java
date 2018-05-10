@@ -10,14 +10,21 @@ public class MazeCharacter {
     private int xPos;
     private int yPos;
 
+    private int xMoveDist=5;
+    public int yMoveDist=5;
+
+    public int directionFaced=0;
+
+    public MazeCharacter(int startX,int startY) {
+        xPos=startX;
+        yPos=startY;
+    }
 
 
-  /*  public class MazeCharacter(View v) {
-        use the given view v to set up the layout
-        setPosition to wherever the start is
-
-    }*/
-
+    public void setDirectionFaced(int direction){
+        //Must be 0,1,2, or 3
+        directionFaced=direction;
+    }
     public void setPosition(int x, int y) {
         this.xPos = x;
         this.yPos = y;
@@ -31,9 +38,26 @@ public class MazeCharacter {
         return this.yPos;
     }
 
-    public void move(int x, int y) {
-        setPosition(x, y);
+    public int getDirectionFaced(){
+        return directionFaced;
+    }
+    public void move() {
+        //Facing up
+        if(directionFaced==0){
+            yPos+=yMoveDist;
+        }
+        //Facing down
+        else if(directionFaced==1){
+            yPos-=yMoveDist;
+        }
+        //Facing right
+        else if(directionFaced==2){
+            xPos+=xMoveDist;
+        }
+        //Facing left
+        else if(directionFaced==3){
+            xPos-=xMoveDist;
+        }
 
     }
-
 }
