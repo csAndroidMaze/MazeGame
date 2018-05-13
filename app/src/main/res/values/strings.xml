@@ -2,4 +2,6 @@
     <string name="app_name">MazeGame</string>
     <string name="welcome">Are you ready to try the maze?</string>
     <string name="go_text">Go!</string>
+    <string name="previous_maze_button">Repeat Level</string>
+    <string name="next_maze_button">Next Level</string>
 </resources>

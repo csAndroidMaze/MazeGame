@@ -1,5 +1,6 @@
 package android.cs.spring18.mazegame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start maze Activity
+                //need to have a class with information about the mazes, put the different Maze layouts in an Array to choose from
+                Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mMazes[0]);
+                startActivity(intent);
             }
         });
     }
@@ -28,7 +32,11 @@ public class MenuActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         //nothing else yet
+
+
     }
+
+
 
 
 }
