@@ -1,6 +1,7 @@
 package android.cs.spring18.mazegame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -49,6 +50,13 @@ public class mazeController extends AppCompatActivity {
         int correctedScreenHeight=(int)(screenHeight*2.5);
 
         pCharacter=new MazeCharacter(0,correctedScreenHeight);
+    }
+
+    public static Intent newIntent(Context packageContext, Maze maze) {
+        Intent intent = new Intent(packageContext, MazeActivity.class);
+        //mCurrentMaze = maze.getMazeLayout();
+        //Log.d("what's the layout", ""+ maze.getMazeLayout());
+        return intent;
     }
 
     public static Point getLocationOnScreen(View view){
