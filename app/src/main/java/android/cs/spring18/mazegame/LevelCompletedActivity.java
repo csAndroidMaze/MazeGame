@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LevelMenuActivity extends AppCompatActivity {
+public class LevelCompletedActivity extends AppCompatActivity {
 
     private static Maze mCurrentMaze;
     private Button mNextButton;
@@ -16,7 +16,7 @@ public class LevelMenuActivity extends AppCompatActivity {
     private TextView mTextView;
 
     public static Intent newIntent(Context packageContext, Maze maze) {
-        Intent intent = new Intent(packageContext, LevelMenuActivity.class);
+        Intent intent = new Intent(packageContext, LevelCompletedActivity.class);
         mCurrentMaze = maze;
         return intent;
     }
@@ -39,7 +39,7 @@ public class LevelMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Maze.mCurrentMazeIndex += 1;
-                Intent intent = MazeActivity.newIntent(LevelMenuActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
+                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
                 startActivity(intent);
             }
         });
@@ -48,7 +48,7 @@ public class LevelMenuActivity extends AppCompatActivity {
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MazeActivity.newIntent(LevelMenuActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
+                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
                 startActivity(intent);
             }
         });
