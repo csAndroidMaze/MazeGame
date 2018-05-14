@@ -16,19 +16,33 @@ public class MazeActivity extends AppCompatActivity {
     private Button leftButton;
     private Button rightButton;
 
+    private static Coords[] mBarriers = new Coords[] {
+            //every index will hold a list of barriers for the maze at
+            // that respective position
+
+
+    };
+
+    private static int[] mViews = new int[] {
+            //array filled with all the views in a layout
+    };
+
 
     public static Intent newIntent(Context packageContext, Maze maze) {
         Intent intent = new Intent(packageContext, MazeActivity.class);
         mCurrentMaze = maze.getMazeLayout();
-        Log.d("what's the layout", ""+ maze.getMazeLayout());
+        //Log.d("what's the layout", ""+ maze.getMazeLayout());
         return intent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("are we getting here?", "yes");
+        //Log.d("are we getting here?", "yes");
         super.onCreate(savedInstanceState);
         setContentView(mCurrentMaze);
+
+        //fill mViews with all the views in the layout
+        //fill mBarriers with all the Coords from all the imageViews
 
         //character movement stuff goes in here
         /*upButton = (Button) findViewById(R.id.up_button);
@@ -69,9 +83,29 @@ public class MazeActivity extends AppCompatActivity {
 
     }
 
+    public void fillCoords() {
+
+    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         //would probably want to save the position of the character here as well
+    }
+
+    class Coords {
+        int x;
+        int y;
+
+        public boolean equals(Object o) {
+            Coords c = (Coords) o;
+            return c.x == x && c.y == y;
+        }
+
+        public Coords(int x, int y) {
+            super();
+            this.x = x;
+            this.y = y;
+        }
     }
 }
