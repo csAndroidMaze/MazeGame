@@ -32,7 +32,7 @@ public class MazeActivity extends AppCompatActivity {
 
     Drawable charImage;
     protected RelativeLayout layout;
-    private static int mCurrentMaze;
+    private static Maze mCurrentMaze;
 
     private static Coords[] mBarriers = new Coords[] {
             //every index will hold a list of barriers for the maze at
@@ -47,13 +47,13 @@ public class MazeActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context packageContext, Maze maze) {
         Intent intent = new Intent(packageContext, MazeActivity.class);
-        mCurrentMaze = maze.getMazeLayout();
+        mCurrentMaze = maze;
         //Log.d("what's the layout", ""+ maze.getMazeLayout());
         return intent;
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mCurrentMaze);
+        setContentView(mCurrentMaze.getMazeLayout());
         treasureView=(ImageView)findViewById(R.id.cheese);
         Drawable drawable = getResources().getDrawable(R.drawable.evil_rat_image);
         charDrawableWidth = drawable.getIntrinsicWidth();
