@@ -16,9 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mazeController"></activity>
-        <activity android:name=".MazeActivity"></activity>
         <activity android:name=".LevelMenuActivity"></activity>
+        <activity android:name=".MazeActivity"></activity>
     </application>
 
 </manifest>
