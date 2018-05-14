@@ -11,11 +11,11 @@ public class MazeCharacter {
     private int yPos;
 
     private int xMoveDist=100;
-    public int yMoveDist=100;
+    private int yMoveDist=100;
 
-    public int directionFaced=0;
+    private int directionFaced=0;
 
-    public MazeCharacter(int startX,int startY) {
+     MazeCharacter(int startX,int startY) {
         xPos=startX;
         yPos=startY;
     }

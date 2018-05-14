@@ -91,10 +91,10 @@ public class MazeActivity extends AppCompatActivity {
     }
 
     private boolean charReachedTreasure(){
-        Log.d("Treasure x in bool:", ""+treasureXPos);
+        /**Log.d("Treasure x in bool:", ""+treasureXPos);
         Log.d("Treasure y in bool:", ""+treasureYPos);
         Log.d("Char x in bool:", ""+xPos);
-        Log.d("Char y in bool:", ""+yPos);
+        Log.d("Char y in bool:", ""+yPos);**/
         return ((xPos + 50 > treasureXPos) && (xPos-50 <treasureXPos)
                 && (yPos + 50>treasureYPos-236) && (yPos - 50<treasureYPos-236));
     }
