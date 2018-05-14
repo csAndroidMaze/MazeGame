@@ -45,9 +45,6 @@ public class LevelMenuActivity extends AppCompatActivity {
         });
 
         mPrevButton = (Button) findViewById(R.id.prev_maze_button);
-        if (Maze.mCurrentMazeIndex == 0) {
-            mPrevButton.setEnabled(false);
-        }
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

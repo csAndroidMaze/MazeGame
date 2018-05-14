@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
                 //start maze Activity
                 //need to have a class with information about the mazes, put the different Maze layouts in an Array to choose from
                 Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
-                //Intent intent = new Intent(MenuActivity.this, LevelMenuActivity.class);this was test
+                //Intent intent = new Intent(MenuActivity.this, LevelMenuActivity.class);//this was test
                 startActivity(intent);
             }
         });
