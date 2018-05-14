@@ -10,8 +10,8 @@ public class MazeCharacter {
     private int xPos;
     private int yPos;
 
-    private int xMoveDist=5;
-    public int yMoveDist=5;
+    private int xMoveDist=100;
+    public int yMoveDist=100;
 
     public int directionFaced=0;
 
@@ -20,9 +20,16 @@ public class MazeCharacter {
         yPos=startY;
     }
 
+    public void setXMoveSpeed(int xSpeed){
+        xMoveDist=xSpeed;
+    }
 
+    public void setYMoveSpeed(int ySpeed){
+        xMoveDist=ySpeed;
+    }
     public void setDirectionFaced(int direction){
         //Must be 0,1,2, or 3
+        //o=up, 1=down, 2=right, 3=left
         directionFaced=direction;
     }
     public void setPosition(int x, int y) {
@@ -42,11 +49,11 @@ public class MazeCharacter {
         return directionFaced;
     }
     public void move() {
-        //Facing up
+        //Facing down
         if(directionFaced==0){
             yPos+=yMoveDist;
         }
-        //Facing down
+        //Facing up
         else if(directionFaced==1){
             yPos-=yMoveDist;
         }
