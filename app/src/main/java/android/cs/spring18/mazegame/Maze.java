@@ -8,6 +8,7 @@ public class Maze {
 
     private boolean mMazeSolved;
     private int mMazeLayout;
+    public static int mCurrentMazeIndex = 0;
 
     public static Maze[] mMazes = new Maze[] {
             new Maze(R.layout.maze_box, false)

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.logging.Level;
+
 public class MenuActivity extends AppCompatActivity {
 
     private Button mButton;
@@ -21,7 +23,8 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //start maze Activity
                 //need to have a class with information about the mazes, put the different Maze layouts in an Array to choose from
-                Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mMazes[0]);
+                Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
+                //Intent intent = new Intent(MenuActivity.this, LevelMenuActivity.class);this was test
                 startActivity(intent);
             }
         });
