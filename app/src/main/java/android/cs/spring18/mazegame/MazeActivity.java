@@ -2,11 +2,13 @@ package android.cs.spring18.mazegame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -16,33 +18,41 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MazeActivity extends AppCompatActivity {
     protected MazeCharacter pCharacter;
+    protected monsterLevelOne monsterObj;
     protected ImageView pCharacterView;
     protected ImageView treasureView;
+    protected ImageView monsterView;
     protected int xPos;
     protected int yPos;
     protected int charDrawableWidth;
     protected int charDrawableHeight;
+    protected int monsterDrawableWidth;
+    protected int monsterDrawableHeight;
     protected int screenHeight;
+    private boolean stopThreadLoop=false;
     public int treasureXPos;
     public int treasureYPos;
-    public int viewXPos;
-    public int viewYPos;
+    public int monsterXPos;
+    public int monsterYPos;
     RelativeLayout.LayoutParams params;
     RelativeLayout mainLayout;
 
     Drawable charImage;
+
+    //We include 1 monster in this level
+    Drawable monsterImage;
+
     protected RelativeLayout layout;
     private static Maze mCurrentMaze;
-
-    private View rectangle4;
 
     private static Coords[] mBarriers = new Coords[] {
             //every index will hold a list of barriers for the maze at
             // that respective position
-
 
     };
 
@@ -59,26 +69,50 @@ public class MazeActivity extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("what maze?", ""+mCurrentMaze.getMazeLayout());
         setContentView(mCurrentMaze.getMazeLayout());
-        treasureView=(ImageView)findViewById(R.id.cheese);
-        Drawable drawable = getResources().getDrawable(R.drawable.evil_rat_image);
+        treasureView=(ImageView)findViewById(R.id.treasure);
+        Drawable drawable = getResources().getDrawable(R.drawable.maze_square);
         charDrawableWidth = drawable.getIntrinsicWidth();
         charDrawableHeight = drawable.getIntrinsicHeight();
 
-        rectangle4 = (View) findViewById(R.id.Rectangle4);
-        Log.d("rectangle 4 coords", ""+ getLocationOnScreen(rectangle4));
+        drawable = getResources().getDrawable(R.drawable.monster_one);
+        monsterDrawableWidth = drawable.getIntrinsicWidth();
+        monsterDrawableHeight = drawable.getIntrinsicHeight();
 
         //mainLayout = (RelativeLayout) findViewById(R.id.main);
         pCharacterView=(ImageView)findViewById(R.id.charImage);
-
+        monsterView=(ImageView)findViewById(R.id.monsterImage);
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = (int)convertPixelsToDp(Resources.getSystem().getDisplayMetrics().heightPixels, this);
-        int correctedScreenHeight=(int)(screenHeight*2.5);
+        int correctedScreenHeight=(int)(screenHeight*2);
 
+        monsterObj=new monsterLevelOne(0,0);
         pCharacter=new MazeCharacter(0,correctedScreenHeight);
+
+        //Sets the starting params so not 0,0
+        params=new RelativeLayout.LayoutParams(charDrawableWidth, charDrawableHeight);
+        pCharacterView.setLayoutParams(params);
+        xPos=pCharacter.getXPos();
+        yPos=pCharacter.getYPos();
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) pCharacterView
+                .getLayoutParams();
+        layoutParams.leftMargin = xPos;
+        layoutParams.topMargin =yPos;
+
+        final Handler handler = new Handler();
+        final int delay = 1000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                moveMonster();
+                handler.postDelayed(this, delay);
+                if(stopThreadLoop){
+                    handler.removeCallbacks(this);
+                }
+            }
+        }, delay);
     }
 
     @Override
@@ -100,23 +134,44 @@ public class MazeActivity extends AppCompatActivity {
         return dp;
     }
 
-    private boolean charTouchedView(){
-        Log.d("where am I", ""+viewXPos+", "+viewYPos );
-        return ((xPos + 50 > viewXPos) && (xPos - 50 < viewXPos) && (yPos +50 > viewYPos - 236) &&
-                (yPos - 50 < viewYPos - 236));
+    private boolean charHitByMonster(){
+        Log.d("Monster x in bool:", ""+monsterXPos);
+         Log.d("Monster y in bool:", ""+monsterYPos);
+         Log.d("Char x in m bool:", ""+xPos);
+         Log.d("Char y in m bool:", ""+yPos);
+        //Eventually we will need to do this with a list of monsters
+        return ((xPos + 100 > monsterXPos) && (xPos-100 <monsterXPos)
+                && (yPos + 100>monsterYPos) && (yPos - 100<monsterYPos));
     }
-
     private boolean charReachedTreasure(){
         Log.d("Treasure x in bool:", ""+treasureXPos);
         Log.d("Treasure y in bool:", ""+treasureYPos);
-        Log.d("Char x in bool:", ""+xPos);
-        Log.d("Char y in bool:", ""+yPos);
-        return ((xPos + 50 > treasureXPos) && (xPos-50 <treasureXPos)
-                && (yPos + 50>treasureYPos-236) && (yPos - 50<treasureYPos-236));
+        Log.d("Char x in t bool:", ""+xPos);
+        Log.d("Char y in t bool:", ""+yPos);
+        return ((xPos + 100 > treasureXPos) && (xPos-100 <treasureXPos)
+                && (yPos + 100>treasureYPos-236) && (yPos - 100<treasureYPos-236));
     }
     private int dpToPx(int dp)
     {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+    private void moveMonster(){
+        monsterObj.move();
+        params=new RelativeLayout.LayoutParams(monsterDrawableWidth, monsterDrawableHeight);
+        monsterView.setLayoutParams(params);
+        monsterXPos=monsterObj.getXPos();
+        monsterYPos=monsterObj.getYPos();
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) monsterView
+                .getLayoutParams();
+        layoutParams.leftMargin = monsterXPos;
+        layoutParams.topMargin =monsterYPos;
+
+        monsterView.setLayoutParams(params);
+
+        if(charHitByMonster()){
+            Log.d("Char hit by monster","yes");
+            goToPlayerLossPage();
+        }
     }
     private void generalMove(){
         pCharacter.move();
@@ -133,20 +188,31 @@ public class MazeActivity extends AppCompatActivity {
         Point treasureXY=getLocationOnScreen(treasureView);
         treasureXPos=treasureXY.x;
         treasureYPos=treasureXY.y;
-        Point viewXY = getLocationOnScreen(rectangle4);
-        viewXPos = viewXY.x;
-        viewYPos = viewXY.y;
         Log.d("Treasure X:", ""+treasureXPos);
         Log.d("Treasure Y:", ""+treasureYPos);
         if(charReachedTreasure()){
-            Log.d("Treasure reached", "true");
-            Toast.makeText(this, "Treasure reached", Toast.LENGTH_SHORT).show();
-        }
+            goToLevelCompletedPage();
+            //This code fails to change to the new activity
+            //newIntent(this, new Maze(R.layout.maze_box, true));
 
-        if(charTouchedView()) {
-            Log.d("View touched", "true");
-            Toast.makeText(this, "Ouch!", Toast.LENGTH_SHORT).show();
+            //Log.d("Treasure reached", "true");
+            //Toast.makeText(this, "Treasure reached", Toast.LENGTH_SHORT).show();
         }
+        if(charHitByMonster()){
+            goToPlayerLossPage();
+        }
+    }
+    public void goToLevelCompletedPage(){
+        stopThreadLoop=true;
+        Intent i = new Intent(this, LevelCompletedActivity.class);
+        //Put extras in like this
+        //i.putExtra("enteredUsername",enteredUsername);
+        startActivity(i);
+    }
+    public void goToPlayerLossPage(){
+        stopThreadLoop=true;
+        Intent i = new Intent(this, playerLoss.class);
+        startActivity(i);
     }
     public void moveRight(View v){
         //o=down, 1=up, 2=right, 3=left

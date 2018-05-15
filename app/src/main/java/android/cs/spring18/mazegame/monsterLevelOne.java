@@ -1,21 +1,17 @@
 package android.cs.spring18.mazegame;
-
-import android.view.View;
-
-import java.util.List;
-
-
-public class MazeCharacter {
-
+import java.util.Random;
+public class monsterLevelOne {
     private int xPos;
     private int yPos;
 
-    private int xMoveDist=25;
-    private int yMoveDist=25;
+    private int xMoveDist=50;
+    private int yMoveDist=50;
 
     private int directionFaced=0;
 
-     MazeCharacter(int startX,int startY) {
+    private Random randObject=new Random();
+
+    monsterLevelOne(int startX,int startY) {
         xPos=startX;
         yPos=startY;
     }
@@ -49,6 +45,9 @@ public class MazeCharacter {
         return directionFaced;
     }
     public void move() {
+        //Should generate a random new direction each time.
+
+        directionFaced=randObject.nextInt(3 - 0 + 1) + 0;
         //Facing down
         if(directionFaced==0){
             yPos+=yMoveDist;
