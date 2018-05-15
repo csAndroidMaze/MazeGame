@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
 public class MazeActivity extends AppCompatActivity {
     protected MazeCharacter pCharacter;
     protected ImageView pCharacterView;
@@ -27,12 +28,16 @@ public class MazeActivity extends AppCompatActivity {
     protected int screenHeight;
     public int treasureXPos;
     public int treasureYPos;
+    public int viewXPos;
+    public int viewYPos;
     RelativeLayout.LayoutParams params;
     RelativeLayout mainLayout;
 
     Drawable charImage;
     protected RelativeLayout layout;
     private static Maze mCurrentMaze;
+
+    private View rectangle4;
 
     private static Coords[] mBarriers = new Coords[] {
             //every index will hold a list of barriers for the maze at
@@ -45,6 +50,7 @@ public class MazeActivity extends AppCompatActivity {
             //array filled with all the views in a layout
     };
 
+
     public static Intent newIntent(Context packageContext, Maze maze) {
         Intent intent = new Intent(packageContext, MazeActivity.class);
         mCurrentMaze = maze;
@@ -53,11 +59,15 @@ public class MazeActivity extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("what maze?", ""+mCurrentMaze.getMazeLayout());
         setContentView(mCurrentMaze.getMazeLayout());
         treasureView=(ImageView)findViewById(R.id.cheese);
         Drawable drawable = getResources().getDrawable(R.drawable.evil_rat_image);
         charDrawableWidth = drawable.getIntrinsicWidth();
         charDrawableHeight = drawable.getIntrinsicHeight();
+
+        rectangle4 = (View) findViewById(R.id.Rectangle4);
+        Log.d("rectangle 4 coords", ""+ getLocationOnScreen(rectangle4));
 
         //mainLayout = (RelativeLayout) findViewById(R.id.main);
         pCharacterView=(ImageView)findViewById(R.id.charImage);
@@ -90,6 +100,12 @@ public class MazeActivity extends AppCompatActivity {
         return dp;
     }
 
+    private boolean charTouchedView(){
+        Log.d("where am I", ""+viewXPos+", "+viewYPos );
+        return ((xPos + 50 > viewXPos) && (xPos - 50 < viewXPos) && (yPos +50 > viewYPos - 236) &&
+                (yPos - 50 < viewYPos - 236));
+    }
+
     private boolean charReachedTreasure(){
         Log.d("Treasure x in bool:", ""+treasureXPos);
         Log.d("Treasure y in bool:", ""+treasureYPos);
@@ -117,11 +133,19 @@ public class MazeActivity extends AppCompatActivity {
         Point treasureXY=getLocationOnScreen(treasureView);
         treasureXPos=treasureXY.x;
         treasureYPos=treasureXY.y;
+        Point viewXY = getLocationOnScreen(rectangle4);
+        viewXPos = viewXY.x;
+        viewYPos = viewXY.y;
         Log.d("Treasure X:", ""+treasureXPos);
         Log.d("Treasure Y:", ""+treasureYPos);
         if(charReachedTreasure()){
             Log.d("Treasure reached", "true");
             Toast.makeText(this, "Treasure reached", Toast.LENGTH_SHORT).show();
+        }
+
+        if(charTouchedView()) {
+            Log.d("View touched", "true");
+            Toast.makeText(this, "Ouch!", Toast.LENGTH_SHORT).show();
         }
     }
     public void moveRight(View v){
