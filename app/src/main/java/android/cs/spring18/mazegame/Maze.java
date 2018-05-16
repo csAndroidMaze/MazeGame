@@ -32,7 +32,8 @@ public class Maze {
     }
 
     public int getMazeLayout() {
-        return this.mMazeLayout;
+        //return this.mMazeLayout;
+        return R.layout.maze_box;
     }
 
 
