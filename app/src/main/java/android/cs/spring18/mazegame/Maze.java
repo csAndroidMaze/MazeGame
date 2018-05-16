@@ -17,8 +17,8 @@ public class Maze {
     };*/
 
     public static int[] mazeLayouts = new int[] {
-            //R.layout.maze_box,
-            R.layout.maze_box1
+            R.layout.maze_box,
+            //R.layout.maze_box1
     };
 
 
