@@ -7,13 +7,15 @@ public class Maze {
 
     private boolean mMazeSolved;
     private static int mMazeLayout;
+
     public static int mCurrentMazeIndex = 0;
 
 
     public static Maze[] mMazes = new Maze[] {
-            new Maze(R.layout.maze_box, false)
-
+            new Maze(R.layout.maze_box, false),
+            new Maze(R.layout.maze_box1, false)
     };
+
 
     public Maze(int layout, boolean isMazeSolved) {
         this.mMazeLayout = layout;
