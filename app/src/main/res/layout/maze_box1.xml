@@ -10,29 +10,54 @@
     android:paddingRight="0dp">
 
     <ImageView
-        android:id="@+id/cheese"
+        android:id="@+id/treasure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/cheese_image" />
+        android:layout_alignStart="@+id/aUp"
+        android:layout_alignTop="@+id/hBlock1"
+        android:layout_marginTop="57dp"
+        app:srcCompat="@drawable/treasure_image" />
+
+    <ImageView
+        android:id="@+id/charImage"
+        android:layout_width="41dp"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@+id/hBlock1"
+        android:layout_below="@+id/hBlock5"
+        android:layout_toRightOf="@+id/vBlock1"
+        android:layout_above="@+id/hBlock4"
+        android:layout_marginTop="-544dp"
+        android:layout_marginStart="50dp"
+        app:srcCompat="@drawable/maze_square" />
+
+    <ImageView
+        android:id="@+id/monsterImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/vBlock1"
+        android:layout_below="@+id/hBlock1"
+        android:layout_marginTop="211dp"
+        app:srcCompat="@drawable/monster_one" />
+
 
     <ImageView
         android:id="@+id/aUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="50dp"
+        android:layout_above="@+id/aDown"
+        android:layout_alignStart="@+id/aDown"
         android:onClick="moveUp"
-        app:srcCompat="@drawable/up_arrow" />
+        app:srcCompat="@drawable/up_arrow"/>
 
     <ImageView
         android:id="@+id/aLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/aUp"
-        android:layout_toStartOf="@+id/aUp"
+        android:layout_above="@+id/aDown"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="88dp"
         android:onClick="moveLeft"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,137 +68,105 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/aUp"
-        android:layout_marginEnd="21dp"
+        android:layout_alignTop="@+id/aLeft"
+        android:layout_marginEnd="11dp"
         android:onClick="moveRight"
         app:layout_constraintEnd_toEndOf="@+id/aUp"
         app:layout_constraintTop_toBottomOf="@+id/aUp"
-        app:srcCompat="@drawable/right_arrow" />
+        app:srcCompat="@drawable/right_arrow"/>
 
 
-    <ImageView
-        android:id="@+id/charImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:srcCompat="@drawable/evil_rat_image" />
 
     <ImageView
         android:id="@+id/aDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/aUp"
-        android:layout_below="@+id/aLeft"
-        android:onClick="moveDown"
-        android:paddingLeft="70dp"
-        app:srcCompat="@drawable/down_arrow" />
-
-    <View
-        android:id="@+id/Rectangle1"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="57dp"
-        android:background="@drawable/rectangle" />
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="49dp"
+        android:onClick="moveDown"
+        app:srcCompat="@drawable/down_arrow"/>
 
-    <View
-        android:id="@+id/Rectangle2"
-        android:layout_width="22dp"
-        android:layout_height="86dp"
-        android:layout_above="@+id/charImage"
+    <ImageView
+        android:id="@+id/vBlock1"
+        android:layout_width="18dp"
+        android:layout_height="733dp"
+        android:layout_alignTop="@+id/hBlock1"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="96dp"
-        android:background="@drawable/rectangle" />
+        app:srcCompat="@drawable/large_vertical_wall" />
 
-    <View
-        android:id="@+id/Rectangle3"
-        android:layout_width="182dp"
-        android:layout_height="22dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/Rectangle2"
-        android:layout_marginEnd="89dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle4"
-        android:layout_width="22dp"
-        android:layout_height="86dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/Rectangle7"
-        android:layout_marginEnd="140dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle5"
-        android:layout_width="191dp"
-        android:layout_height="22dp"
+    <ImageView
+        android:id="@+id/vBlock2"
+        android:layout_width="18dp"
+        android:layout_height="733dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="168dp"
-        android:background="@drawable/rectangle" />
+        android:layout_alignTop="@+id/hBlock1"
+        android:layout_alignRight="@+id/aRight"
+        app:srcCompat="@drawable/large_vertical_wall" />
 
-    <View
-        android:id="@+id/Rectangle6"
-        android:layout_width="22dp"
-        android:layout_height="192dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle7"
-        android:layout_width="22dp"
-        android:layout_height="115dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/Rectangle5"
-        android:layout_marginEnd="58dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle8"
-        android:layout_width="22dp"
-        android:layout_height="86dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/Rectangle4"
-        android:layout_marginStart="135dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle9"
-        android:layout_width="86dp"
-        android:layout_height="22dp"
-        android:layout_alignEnd="@+id/Rectangle8"
-        android:layout_alignTop="@+id/Rectangle4"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle10"
-        android:layout_width="22dp"
-        android:layout_height="92dp"
-        android:layout_alignStart="@+id/Rectangle2"
-        android:layout_alignTop="@+id/Rectangle5"
-        android:layout_marginTop="-24dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle11"
-        android:layout_width="45dp"
-        android:layout_height="22dp"
-        android:layout_alignEnd="@+id/Rectangle2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="227dp"
-        android:background="@drawable/rectangle" />
-
-    <View
-        android:id="@+id/Rectangle12"
-        android:layout_width="116dp"
-        android:layout_height="22dp"
+    <ImageView
+        android:id="@+id/hBlock1"
+        android:layout_width="865dp"
+        android:layout_height="24dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="137dp"
-        android:background="@drawable/rectangle" />
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+    <ImageView
+        android:id="@+id/hBlock2"
+        android:layout_width="522dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginTop="464dp"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+    <ImageView
+        android:id="@+id/hBlock3"
+        android:layout_width="522dp"
+        android:layout_height="25dp"
+        android:layout_alignStart="@+id/hBlock1"
+        android:layout_alignRight="@+id/hBlock5"
+        android:layout_marginTop="346dp"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+    <ImageView
+        android:id="@+id/hBlock4"
+        android:layout_width="888dp"
+        android:layout_height="24dp"
+        android:layout_alignEnd="@+id/aRight"
+        android:layout_alignBottom="@+id/vBlock1"
+        android:layout_alignLeft="@+id/hBlock5"
+        android:layout_alignStart="@+id/hBlock3"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+    <ImageView
+        android:id="@+id/hBlock5"
+        android:layout_width="648dp"
+        android:layout_height="33dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/hBlock1"
+        android:layout_marginBottom="544dp"
+        android:layout_below="@+id/hBlock2"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+    <ImageView
+        android:id="@+id/hBlock6"
+        android:layout_width="522dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="184dp"
+        android:layout_toStartOf="@+id/vBlock2"
+        app:srcCompat="@drawable/large_horizontal_wall" />
+
+
+
+
 
 
 

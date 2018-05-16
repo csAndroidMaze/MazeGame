@@ -48,7 +48,7 @@ public class MazeActivity extends AppCompatActivity {
     Drawable monsterImage;
 
     protected RelativeLayout layout;
-    private static Maze mCurrentMaze;
+    private static int mCurrentMaze;
 
     private static Coords[] mBarriers = new Coords[] {
             //every index will hold a list of barriers for the maze at
@@ -61,15 +61,15 @@ public class MazeActivity extends AppCompatActivity {
     };
 
 
-    public static Intent newIntent(Context packageContext, Maze maze) {
+    public static Intent newIntent(Context packageContext, int mazeLayout) {
         Intent intent = new Intent(packageContext, MazeActivity.class);
-        mCurrentMaze = maze;
+        mCurrentMaze = mazeLayout;
         //Log.d("what's the layout", ""+ maze.getMazeLayout());
         return intent;
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mCurrentMaze.getMazeLayout());
+        setContentView(mCurrentMaze);
         treasureView=(ImageView)findViewById(R.id.treasure);
         Drawable drawable = getResources().getDrawable(R.drawable.maze_square);
         charDrawableWidth = drawable.getIntrinsicWidth();

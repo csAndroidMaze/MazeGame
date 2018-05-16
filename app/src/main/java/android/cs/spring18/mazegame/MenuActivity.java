@@ -12,6 +12,8 @@ import java.util.logging.Level;
 public class MenuActivity extends AppCompatActivity {
 
     private Button mButton;
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class MenuActivity extends AppCompatActivity {
                 //start maze Activity
                 //need to have a class with information about the mazes, put the different Maze layouts in an Array to choose from
                 //Log.d("which maze?", ""+Maze.mMazes.length);
-                Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mMazes[0]);
+                Intent intent = MazeActivity.newIntent(MenuActivity.this, Maze.mazeLayouts[0]);
                 //Intent intent = new Intent(MenuActivity.this, LevelCompletedActivity.class);//this was test
                 startActivity(intent);
             }

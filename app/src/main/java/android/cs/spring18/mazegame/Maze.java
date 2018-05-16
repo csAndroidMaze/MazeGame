@@ -11,9 +11,14 @@ public class Maze {
     public static int mCurrentMazeIndex = 0;
 
 
-    public static Maze[] mMazes = new Maze[] {
+   /* public static Maze[] mMazes = new Maze[] {
             new Maze(R.layout.maze_box, false),
-            new Maze(R.layout.maze_box1, false)
+            //new Maze(R.layout.maze_box1, false)
+    };*/
+
+    public static int[] mazeLayouts = new int[] {
+            //R.layout.maze_box,
+            R.layout.maze_box1
     };
 
 
@@ -32,6 +37,7 @@ public class Maze {
     }
 
     public int getMazeLayout() {
+
         return this.mMazeLayout;
     }
 

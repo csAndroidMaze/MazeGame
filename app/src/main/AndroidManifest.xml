@@ -16,9 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LevelCompletedActivity"/>
-        <activity android:name=".MazeActivity"/>
-        <activity android:name=".playerLoss">
+        <activity android:name=".LevelCompletedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MazeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".playerLoss"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
