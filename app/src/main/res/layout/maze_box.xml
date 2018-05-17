@@ -19,27 +19,36 @@
         android:id="@+id/charImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/aUp"
-        android:layout_marginTop="-50dp"
         app:srcCompat="@drawable/maze_square"/>
+        <!--android:layout_above="@+id/hBlock1"-->
+        <!--android:layout_toRightOf="@+id/vBlock2"-->
+
 
     <ImageView
         android:id="@+id/monsterImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         app:srcCompat="@drawable/monster_one"/>
+        <!--android:layout_alignBottom="@+id/treasure"-->
+        <!--android:layout_alignParentStart="true"-->
 
+    <ImageView
+        android:id="@+id/monster2Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/monster_two"/>
 
+    <ImageView
+        android:id="@+id/monster3Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/monster_three"/>
     <ImageView
         android:id="@+id/aUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_above="@+id/aDown"
-        android:layout_alignStart="@+id/aDown"
+        android:layout_alignBottom="@+id/hBlock11"
+        android:layout_toStartOf="@+id/aRight"
         android:onClick="moveUp"
         app:srcCompat="@drawable/up_arrow"/>
 
@@ -48,11 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/aDown"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="88dp"
+        android:layout_toLeftOf="@+id/aUp"
         android:onClick="moveLeft"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/left_arrow"/>
 
     <ImageView
@@ -60,13 +66,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/aLeft"
-        android:layout_marginEnd="11dp"
         android:onClick="moveRight"
-        app:layout_constraintEnd_toEndOf="@+id/aUp"
-        app:layout_constraintTop_toBottomOf="@+id/aUp"
+        android:layout_above="@+id/aDown"
         app:srcCompat="@drawable/right_arrow"/>
-
 
 
     <ImageView
@@ -159,8 +161,7 @@
         android:id="@+id/hBlock11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/aUp"
-        android:layout_marginTop="-50dp"
+        android:layout_below="@+id/vBlock18"
         android:layout_toEndOf="@+id/hBlock3"
         app:srcCompat="@drawable/horizontal_line_image"/>
 
@@ -168,16 +169,15 @@
         android:id="@+id/hBlock12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/aUp"
-        android:layout_marginTop="-50dp"
         android:layout_toLeftOf="@+id/hBlock11"
+        android:layout_above="@+id/vBlock1"
         app:srcCompat="@drawable/horizontal_line_image"/>
     <ImageView
         android:id="@+id/hBlock13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/vBlock2"
-        android:layout_toRightOf="@+id/vBlock2"
+        android:layout_alignTop="@+id/vBlock3"
+        android:layout_toRightOf="@+id/vBlock3"
         app:srcCompat="@drawable/horizontal_line_image"/>
     <ImageView
         android:id="@+id/hBlock14"
@@ -243,18 +243,24 @@
         android:layout_toEndOf="@+id/hBlock1"
         app:srcCompat="@drawable/vertical_line_image"/>
 
-
     <ImageView
         android:id="@+id/vBlock2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/vBlock1"
+        android:layout_alignBottom="@+id/vBlock1"
+        app:srcCompat="@drawable/vertical_line_image"/>
+
+    <ImageView
+        android:id="@+id/vBlock3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/vBlock2"
         app:srcCompat="@drawable/vertical_line_image"/>
     <ImageView
         android:id="@+id/vBlock4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/vBlock2"
+        android:layout_above="@+id/vBlock3"
         app:srcCompat="@drawable/vertical_line_image"/>
     <ImageView
         android:id="@+id/vBlock5"

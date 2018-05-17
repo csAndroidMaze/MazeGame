@@ -9,6 +9,8 @@ public class monsterLevelOne {
 
     private int directionFaced=0;
 
+    private int changeMoveDirection=0;
+
     private Random randObject=new Random();
 
     monsterLevelOne(int startX,int startY) {
@@ -21,7 +23,7 @@ public class monsterLevelOne {
     }
 
     public void setYMoveSpeed(int ySpeed){
-        xMoveDist=ySpeed;
+        yMoveDist=ySpeed;
     }
     public void setDirectionFaced(int direction){
         //Must be 0,1,2, or 3
@@ -47,7 +49,8 @@ public class monsterLevelOne {
     public void move() {
         //Should generate a random new direction each time.
 
-        directionFaced=randObject.nextInt(3 - 0 + 1) + 0;
+        //directionFaced=randObject.nextInt(3 - 0 + 1) + 0;
+
         //Facing down
         if(directionFaced==0){
             yPos+=yMoveDist;
