@@ -34,7 +34,7 @@
             android:layout_marginTop="55dp"
             android:background="#f8f8ff"
             android:text="@string/tbc"
-            android:textColor="#228b22"
+            android:textColor="#817f7f"
             android:textSize="20sp"
             android:textStyle="bold|italic" />
 
@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:background="#228b22"
+            android:textSize="20sp"
             android:text="@string/prev"
             android:textStyle="bold" />
 
@@ -54,6 +55,7 @@
             android:layout_gravity="end|bottom"
             android:background="#c40824"
             android:text="@string/quit"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 </FrameLayout>
