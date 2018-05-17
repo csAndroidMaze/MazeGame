@@ -16,6 +16,13 @@
         app:srcCompat="@drawable/treasure_image"/>
 
     <ImageView
+        android:id="@+id/treasure2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hBlock2"
+        app:srcCompat="@drawable/treasure_image"/>
+
+    <ImageView
         android:id="@+id/charImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -458,8 +465,6 @@
         android:layout_above="@+id/vBlock29"
         android:layout_toRightOf="@+id/hBlock4"
         app:srcCompat="@drawable/vertical_line_image"/>
-
-
 
 
 
