@@ -12,51 +12,30 @@
         android:scaleType="centerCrop"
         android:src="@drawable/maze_background" />
 
+    <TextView
+        android:id="@+id/congrats_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#f8f8ff"
+        android:text="@string/Congrats"
+        android:textColor="#228b22"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/congrats_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
-            android:layout_gravity="center"
-            android:background="#f8f8ff"
-            android:text="@string/Congrats"
-            android:textColor="#228b22"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/prev_maze_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:text="@string/prev" />
 
+    <Button
+        android:id="@+id/next_maze_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:text="@string/next" />
 
-        <TextView
-            android:id="@+id/tbc_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="55dp"
-            android:background="#f8f8ff"
-            android:text="@string/tbc"
-            android:textColor="#817f7f"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
-
-        <Button
-            android:id="@+id/prev_maze_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|bottom"
-            android:background="#228b22"
-            android:textSize="20sp"
-            android:text="@string/prev"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/quit_maze_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:background="#c40824"
-            android:text="@string/quit"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
 </FrameLayout>
-

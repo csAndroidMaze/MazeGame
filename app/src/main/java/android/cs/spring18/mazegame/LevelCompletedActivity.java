@@ -10,14 +10,14 @@ import android.widget.TextView;
 
 public class LevelCompletedActivity extends AppCompatActivity {
 
-    private static int mCurrentMaze;
-    private Button mQuitButton;
+    private static Maze mCurrentMaze;
+    private Button mNextButton;
     private Button mPrevButton;
     private TextView mTextView;
 
-    public static Intent newIntent(Context packageContext, int mazeLayout) {
+    public static Intent newIntent(Context packageContext, Maze maze) {
         Intent intent = new Intent(packageContext, LevelCompletedActivity.class);
-        mCurrentMaze = mazeLayout;
+        mCurrentMaze = maze;
         return intent;
     }
 
@@ -27,16 +27,19 @@ public class LevelCompletedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_level);
 
         mTextView = (TextView) findViewById(R.id.congrats_text);
-        if (Maze.mCurrentMazeIndex == (Maze.mazeLayouts.length - 1)) {
+        if (Maze.mCurrentMazeIndex == (Maze.mMazes.length - 1)) {
             mTextView.setText("Congrats, you've beat all the levels");
         }
 
-        mQuitButton = (Button) findViewById(R.id.quit_maze_button);
-        mQuitButton.setOnClickListener(new View.OnClickListener() {
+        mNextButton = (Button) findViewById(R.id.next_maze_button);
+        if (Maze.mCurrentMazeIndex == (Maze.mMazes.length-1)) {
+            mNextButton.setEnabled(false);
+        }
+        mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Maze.mCurrentMazeIndex = 0;
-                Intent intent = new Intent(LevelCompletedActivity.this, MenuActivity.class);
+                Maze.mCurrentMazeIndex += 1;
+                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
                 startActivity(intent);
             }
         });
@@ -45,7 +48,7 @@ public class LevelCompletedActivity extends AppCompatActivity {
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mazeLayouts[Maze.mCurrentMazeIndex]);
+                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mMazes[Maze.mCurrentMazeIndex]);
                 startActivity(intent);
             }
         });
