@@ -7,4 +7,6 @@
     <string name="next">Next Level</string>
     <string name="previous_maze_button">Repeat Level</string>
     <string name="next_maze_button">Next Level</string>
+    <string name="tbc">To be continued . . .</string>
+    <string name="quit">Quit!</string>
 </resources>

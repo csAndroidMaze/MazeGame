@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class LevelCompletedActivity extends AppCompatActivity {
 
     private static int mCurrentMaze;
-    private Button mNextButton;
+    private Button mQuitButton;
     private Button mPrevButton;
     private TextView mTextView;
 
@@ -31,15 +31,12 @@ public class LevelCompletedActivity extends AppCompatActivity {
             mTextView.setText("Congrats, you've beat all the levels");
         }
 
-        mNextButton = (Button) findViewById(R.id.next_maze_button);
-        if (Maze.mCurrentMazeIndex == (Maze.mazeLayouts.length-1)) {
-            mNextButton.setEnabled(false);
-        }
-        mNextButton.setOnClickListener(new View.OnClickListener() {
+        mQuitButton = (Button) findViewById(R.id.quit_maze_button);
+        mQuitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Maze.mCurrentMazeIndex += 1;
-                Intent intent = MazeActivity.newIntent(LevelCompletedActivity.this, Maze.mazeLayouts[Maze.mCurrentMazeIndex]);
+                Maze.mCurrentMazeIndex = 0;
+                Intent intent = new Intent(LevelCompletedActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
